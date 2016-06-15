@@ -1,84 +1,84 @@
-<!-- Last Day -->
-<div class="centered-box" ng-if="dayBeforeL > 0">
-    <div class="day-grouping">{{ dateS + ', ' + dateN + ' ' + dateM }}</div>
-</div>
-
-<div class="scores-box" data-ng-repeat="agoComp in compYesterday track by $index">
-    <div class="scores-box-header">
-        <img ng-src="http://imagescache.365scores.com/image/upload/w_140,h_140,c_limit,f_webp,q_90,d_Countries:Round:default.png/Countries/Round/{{ agoComp.CID }}" width="30">
-        <h3>{{ agoComp.Name }}</h3>
+    <!-- Last Day -->
+    <div class="centered-box" ng-if="dayBeforeL > 0">
+        <div class="day-grouping">{{ dateS + ', ' + dateN + ' ' + dateM }}</div>
     </div>
     
-    <div class="scores-box-row" ng-if="agoGames.Comp == agoComp.ID" data-ng-repeat="agoGames in gamesYesterday track by $index">
-        <div class="logo1">
-            <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ agoGames.Comps[0].ID }}">
+    <div class="scores-box" data-ng-repeat="agoComp in compYesterday track by $index">
+        <div class="scores-box-header">
+            <img ng-src="http://imagescache.365scores.com/image/upload/w_140,h_140,c_limit,f_webp,q_90,d_Countries:Round:default.png/Countries/Round/{{ agoComp.CID }}" width="30">
+            <h3>{{ agoComp.Name }}</h3>
         </div>
-        <div class="side1">
-            {{ agoGames.Comps[0].Name }}
-        </div>
-        <div class="status-wrapper">
-            <div class="score scoreTime">
-                <span ng-if="agoGames.Active == false && agoGames.GT == 90">
-                    {{ agoGames.Scrs[0] + ' - ' + agoGames.Scrs[1] }}
-                    <span class="finished">Finished</span>
-                </span>
+        
+        <div class="scores-box-row" ng-if="agoGames.Comp == agoComp.ID" data-ng-repeat="agoGames in gamesYesterday track by $index">
+            <div class="logo1">
+                <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ agoGames.Comps[0].ID }}">
             </div>
-            <span class="score scoreTime" ng-if="agoGames.Active == false && agoGames.GT == -1">{{ agoGames.GTime }}</span>
+            <div class="side1">
+                {{ agoGames.Comps[0].Name }}
+            </div>
+            <div class="status-wrapper">
+                <div class="score scoreTime">
+                    <span ng-if="agoGames.Active == false && agoGames.GT == 90">
+                        {{ agoGames.Scrs[0] + ' - ' + agoGames.Scrs[1] }}
+                        <span class="finished">Finished</span>
+                    </span>
+                </div>
+                <span class="score scoreTime" ng-if="agoGames.Active == false && agoGames.GT == -1">{{ agoGames.GTime }}</span>
+            </div>
+            <div class="side2">
+                {{ agoGames.Comps[1].Name }}
+            </div>
+            <div class="logo2">
+                <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ agoGames.Comps[1].ID }}">
+            </div>
         </div>
-        <div class="side2">
-            {{ agoGames.Comps[1].Name }}
-        </div>
-        <div class="logo2">
-            <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ agoGames.Comps[1].ID }}">
-        </div>
-    </div>
-</div>
-
-<!-- Today -->
-<div class="centered-box">
-    <div class="day-grouping">Today</div>
-</div>
-
-<div class="scores-box" data-ng-repeat="comp in compToday track by $index">
-    <div class="scores-box-header">
-        <img ng-src="http://imagescache.365scores.com/image/upload/w_140,h_140,c_limit,f_webp,q_90,d_Countries:Round:default.png/Countries/Round/{{ comp.img }}" width="30">
-        <h3>{{ comp.name }}</h3>
     </div>
     
-    <div class="scores-box-row" ng-if="games.Comp == comp.CID" data-ng-repeat="games in gamesToday track by $index ">
-        <div class="logo1">
-            <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ games.Comps[0].ID }}">
+    <!-- Today -->
+    <div class="centered-box" ng-if="compLen > 0">
+        <div class="day-grouping">Today</div>
+    </div>
+    
+    <div class="scores-box" ng-if="compLen > 0" data-ng-repeat="comp in compToday track by $index">
+        <div class="scores-box-header">
+            <img ng-src="http://imagescache.365scores.com/image/upload/w_140,h_140,c_limit,f_webp,q_90,d_Countries:Round:default.png/Countries/Round/{{ comp.img }}" width="30">
+            <h3>{{ comp.name }}</h3>
         </div>
-        <div class="side1">
-            {{ games.Comps[0].Name }}
-        </div>
-        <div class="status-wrapper">
-            <div class="extra" ng-if="games.Active !== false && games.GT < 46">First Half</div>
-            <div class="extra" ng-if="games.Active !== false && games.GT > 45">Second Half</div>
-            <div class="score">
-                <span ng-if="games.Active == false && games.GT == 90">
-                    {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
-                    <span style="display: block; font-size: 13px; line-height: normal;">Finished</span>
-                </span>
-                <span ng-if="games.Active == true && games.GT == -1">
-                    {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
-                </span>
-                <span ng-if="games.Active !== false">
-                    {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
-                </span>
-                
-                <span ng-if="games.Active == false && games.GT !== -1 && games.Scrs[0] == -1 && games.AutoProgressGT == false && games.Attendance == 0">
-                    ?? - ??
-                </span>
+        
+        <div class="scores-box-row" ng-if="games.Comp == comp.CID" data-ng-repeat="games in gamesToday track by $index ">
+            <div class="logo1">
+                <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ games.Comps[0].ID }}">
             </div>
-            <span class="live" ng-if="games.Active !== false">LIVE - '{{ games.GT }}</span>
-            <span class="score scoreTime" ng-if="games.Active == false && games.GT == -1">{{ games.GTime }}</span>
-        </div>
-        <div class="side2">
-            {{ games.Comps[1].Name }}
-        </div>
-        <div class="logo2">
-            <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ games.Comps[1].ID }}">
+            <div class="side1">
+                {{ games.Comps[0].Name }}
+            </div>
+            <div class="status-wrapper">
+                <div class="extra" ng-if="games.Active !== false && games.GT < 46">First Half</div>
+                <div class="extra" ng-if="games.Active !== false && games.GT > 45">Second Half</div>
+                <div class="score">
+                    <span ng-if="games.Active == false && games.GT == 90">
+                        {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
+                        <span style="display: block; font-size: 13px; line-height: normal;">Finished</span>
+                    </span>
+                    <span ng-if="games.Active == true && games.GT == -1">
+                        {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
+                    </span>
+                    <span ng-if="games.Active !== false">
+                        {{ games.Scrs[0] + ' - ' + games.Scrs[1] }}
+                    </span>
+                    
+                    <span ng-if="games.Active == false && games.GT !== -1 && games.Scrs[0] == -1 && games.AutoProgressGT == false && games.Attendance == 0">
+                        ?? - ??
+                    </span>
+                </div>
+                <span class="live" ng-if="games.Active !== false">LIVE - '{{ games.GT }}</span>
+                <span class="score scoreTime" ng-if="games.Active == false && games.GT == -1">{{ games.GTime }}</span>
+            </div>
+            <div class="side2">
+                {{ games.Comps[1].Name }}
+            </div>
+            <div class="logo2">
+                <img ng-src="http://imagescache.365scores.com/image/upload/w_48,h_48,c_limit,f_webp,q_90,d_Competitors:default1.png/Competitors/{{ games.Comps[1].ID }}">
+            </div>
         </div>
     </div>
-</div>
